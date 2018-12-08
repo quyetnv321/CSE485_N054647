@@ -30,7 +30,14 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Form đăng ký</h2>
-                    <form method="POST" action="" id="register-form">
+                    <div>
+                        @if(Session::has('done'))
+                            <p id="regis-done">{{Session::get('done')}}</p>
+                        @endif
+                    </div>
+                    <form method="POST" action="{{route('register')}}" id="register-form">
+                    <input type ="hidden" name="_token" value="{{@csrf_token()}}">
+                    
                         <div class="input-group">
                             <label class="label">Tên tài khoản</label>
                             <div class="rs-select2 js-select-simple select--no-search">
@@ -70,11 +77,11 @@
                                     <label class="label">Giới tính</label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Nam
-                                            <input type="radio" checked="checked" name="gender">
+                                            <input type="radio" checked="checked" value = '1' name="gender">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Nữ
-                                            <input type="radio" name="gender">
+                                            <input type="radio" value = '0' name="gender">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>

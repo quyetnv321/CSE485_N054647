@@ -643,3 +643,6 @@
   label.error {
       color: red;
   }
+  #regis-done{
+    color: green;
+  }

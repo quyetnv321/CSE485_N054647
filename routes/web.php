@@ -29,24 +29,4 @@ Route::group(['prefix' => 'admin'], function() {
         return view('admin.manage');
     });
 });
-Route::post("register", function() {
-    $rules = array(
-        "userName" => "required|min:3",
-        "pass" => "required|min:6",
-        "email" => "required|email",
-        "phone" => "required|min:9",
-        "full_name" => "required|min:5"
-    );
-    if(!Validator::make(Input::all(),$rules)->fails()) {
-        $user = new User();
-        $user->userName = Input::get("userName");
-        $user->pass = md5(sha1(Input::get("pass")));
-        $user->email = Input::get("email");
-        $user->full_name = Input::get("full_name");
-        $user->birthday = Input::get("birthday");
-        $user->gender = Input::get("gender");
-        $user->phone = Input::get("phone");
-        $user->save();
-        echo "Đăng ký thành công";
-    }
-});
+Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
