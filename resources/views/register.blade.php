@@ -12,7 +12,6 @@
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Vendor CSS-->
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
@@ -21,6 +20,7 @@
     <link href="css/main.css" rel="stylesheet" media="all">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
     <title>Đăng ký tài khoản</title>
 </head>
 
@@ -30,37 +30,29 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Form đăng ký</h2>
-                    <form method="POST" action="">
+                    <form method="POST" action="" id="register-form">
                         <div class="input-group">
                             <label class="label">Tên tài khoản</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <input class="input--style-4" type="text" name="userName">
+                                <input class="input--style-4" type="text" id = "userName" name="userName">
                             </div>
                         </div>
                         <div class="input-group">
                             <label class="label">Mật khẩu</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <input class="input--style-4" type="password" name="pass">
+                                <input class="input--style-4" type="password" id="pass" name="pass">
                             </div>
                         </div>
                         <div class="input-group">
                             <label class="label">Nhập lại mật khẩu</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <input class="input--style-4" type="password" name="passA">
+                                <input class="input--style-4" type="password" id="passA" name="passA">
                             </div>
                         </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Tên</label>
-                                    <input class="input--style-4" type="text" name="first_name">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Họ</label>
-                                    <input class="input--style-4" type="text" name="last_name">
-                                </div>
+                        <div class="input-group">
+                            <div class="input-group">
+                                <label class="label">Họ và Tên</label>
+                                <input class="input--style-4" type="text" id="full_name" name="full_name">
                             </div>
                         </div>
                         <div class="row row-space">
@@ -68,7 +60,7 @@
                                 <div class="input-group">
                                     <label class="label">Ngày sinh</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthday" id="birthday">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -93,13 +85,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <input class="input--style-4" type="email" id="email" name="email">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Số điện thoại</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <input class="input--style-4" type="text" id="phone" name="phone">
                                 </div>
                             </div>
                         </div>
@@ -114,14 +106,69 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
     <!-- Vendor JS-->
     <script src="vendor/select2/select2.min.js"></script>
     <script src="vendor/datepicker/moment.min.js"></script>
     <script src="vendor/datepicker/daterangepicker.js"></script>
     <!-- Main JS-->
     <script src="js/global.js"></script>
-
+    <script>
+    $(document).ready(function() {
+        $("#register-form").validate({
+            rules: {
+                userName: {
+                    required: true,
+                    minlength: 3,
+                },
+                pass: {
+                    required: true,
+                    minlength: 6,
+                },
+                passA: {
+                    equalTo: "#pass"
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                phone: {
+                    require: true,
+                    minlength: 9
+                },
+                full_name: {
+                    require: true,
+                    minlength: 5,
+                }
+            },
+            messages: {
+                userName: {
+                    required: "Vui lòng nhập tên tài khoản",
+                    minlength: "Tên tài khoản phải dài hơn 3 ký tự",
+                },
+                pass: {
+                    required: "Vui lòng nhập mật khẩu",
+                    minlength: "Mật khẩu phải dài hơn 6 ký tự",
+                },
+                passA: {
+                    equalTo: "Mật khẩu nhập lại không đúng",
+                },
+                email: {
+                    required: "Vui lòng nhập email",
+                    email: "Không đúng định dạng email",
+                },
+                phone: {
+                    required: "Vui lòng nhập sđt",
+                    minlength: "Không đúng định dạng số điện thoại"
+                },
+                full_name: {
+                    required: "Vui lòng nhập tên của bạn",
+                    minlength: "Tên dài hơn 5 ký tự",
+                },
+            }
+        })
+    })
+    </script>
 </body>
 
 </html>

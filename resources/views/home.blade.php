@@ -46,7 +46,7 @@
                             <a href="#">Điều khoản sử dụng</a>
                         </div>
                         <div class="item-menu-home">
-                            <a href="/dangky">Đăng ký tài khoản</a>
+                            <a href="/register">Đăng ký tài khoản</a>
                         </div>
                     </div>
                     
