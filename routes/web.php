@@ -30,3 +30,4 @@ Route::group(['prefix' => 'admin'], function() {
     });
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
+Route::post("game", ["as"=>"/","uses"=>"LoginController@index"]);

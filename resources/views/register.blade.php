@@ -34,6 +34,9 @@
                         @if(Session::has('done'))
                             <p id="regis-done">{{Session::get('done')}}</p>
                         @endif
+                        @if(Session::has('fails'))
+                            <p id="regis-fails">{{Session::get('fails')}}</p>
+                        @endif
                     </div>
                     <form method="POST" action="{{route('register')}}" id="register-form">
                     <input type ="hidden" name="_token" value="{{@csrf_token()}}">
@@ -41,25 +44,25 @@
                         <div class="input-group">
                             <label class="label">Tên tài khoản</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <input class="input--style-4" type="text" id = "userName" name="userName">
+                                <input class="input--style-4" type="text" id = "userName" required name="userName">
                             </div>
                         </div>
                         <div class="input-group">
                             <label class="label">Mật khẩu</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <input class="input--style-4" type="password" id="pass" name="pass">
+                                <input class="input--style-4" type="password" id="pass" required name="pass">
                             </div>
                         </div>
                         <div class="input-group">
                             <label class="label">Nhập lại mật khẩu</label>
                             <div class="rs-select2 js-select-simple select--no-search">
-                                <input class="input--style-4" type="password" id="passA" name="passA">
+                                <input class="input--style-4" type="password" id="passA" required name="passA">
                             </div>
                         </div>
                         <div class="input-group">
                             <div class="input-group">
                                 <label class="label">Họ và Tên</label>
-                                <input class="input--style-4" type="text" id="full_name" name="full_name">
+                                <input class="input--style-4" type="text" id="full_name" required name="full_name">
                             </div>
                         </div>
                         <div class="row row-space">
@@ -67,7 +70,7 @@
                                 <div class="input-group">
                                     <label class="label">Ngày sinh</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday" id="birthday">
+                                        <input class="input--style-4 js-datepicker" type="text" required name="birthday" id="birthday">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -77,11 +80,11 @@
                                     <label class="label">Giới tính</label>
                                     <div class="p-t-10">
                                         <label class="radio-container m-r-45">Nam
-                                            <input type="radio" checked="checked" value = '1' name="gender">
+                                            <input type="radio" checked="checked" value = '1' required name="gender">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="radio-container">Nữ
-                                            <input type="radio" value = '0' name="gender">
+                                            <input type="radio" value = '0' required name="gender">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -92,13 +95,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" id="email" name="email">
+                                    <input class="input--style-4" type="email" id="email" required name="email">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Số điện thoại</label>
-                                    <input class="input--style-4" type="text" id="phone" name="phone">
+                                    <input class="input--style-4" type="text" id="phone" required name="phone">
                                 </div>
                             </div>
                         </div>
@@ -158,6 +161,7 @@
                     minlength: "Mật khẩu phải dài hơn 6 ký tự",
                 },
                 passA: {
+                    required: "Vui lòng nhập lại mật khẩu",
                     equalTo: "Mật khẩu nhập lại không đúng",
                 },
                 email: {

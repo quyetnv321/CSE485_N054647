@@ -32,7 +32,11 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->level = 0;
-        $user->save();
-        return redirect()->back()->with('done','Tạo tài khoản thành công');
+        if(!$user->where('user_name',$request->userName)->first()){
+            $user->save();
+            return redirect()->back()->with('done','Tạo tài khoản thành công');
+        }
+        else 
+            return redirect()->back()->with('fails','Đăng ký thất bại! Tài khoản đã tồn tại');
     }
 }

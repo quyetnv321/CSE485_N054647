@@ -16,7 +16,8 @@
             <div class="title-form">
                 <p>tham gia chơi</p>
             </div>
-            <form action="" method="post">
+            <form action="{{route('/')}}" method="post">
+                <input type ="hidden" name="_token" value="{{@csrf_token()}}">
                 <p><input class="input-login" type="text" name="userName" placeholder="Tên tài khoản"></p>
                 <p><input class="input-login" type="password" name="password" placeholder="Mật khẩu"></p>
                 <p><input class="btn-login" type="submit" name="login" value="Đăng nhập"></p>

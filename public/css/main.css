@@ -646,3 +646,6 @@
   #regis-done{
     color: green;
   }
+  #regis-fails{
+    color: red;
+  }
