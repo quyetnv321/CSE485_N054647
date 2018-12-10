@@ -9,12 +9,7 @@ class LoginController extends Controller
     public function index(Request $request) {
         $username = $request->userName;
         $password = $request->password;
-
-        // $password = Hash::make( $request->password);
-        // dd($username);
-        $user = new User();
-        // dd($password);
-        
+        // $user = new User();
         
         if(Auth::attempt(['user_name'=>$username,'password'=>$password])) {
             return view('game');

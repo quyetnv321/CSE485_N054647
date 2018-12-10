@@ -61,6 +61,9 @@
                                 <option value = "right-d">Đáp án D</option>
                             </select>      
                         </div>
+                        <div class="form-group btn-submit">
+                                <button type="submit" class="btn btn-primary" name = "up">Upload</button>
+                        </div>  
                     </form>
                 </div>
             </div>

@@ -8,20 +8,20 @@ use Hash;
 class RegisterController extends Controller
 {
     public function index(Request $request) {
-        // $this->validate(
-        //     $request,
-        //     [
-        //         'userName' => 'required|unique:user_name|min:3',
-        //         'pass' => 'required|min:6',
-        //         'passA' => 'required|same:pass',
-        //         'email' => 'required|email',
-        //         'phone' => 'required|min:9',
-        //         'full_name' => 'required'
-        //     ],
-        // [
-        //     'userName.unique' => 'Tài khoản đã tồn tại'
-        // ]
-        // );
+        $this->validate(
+            $request,
+            [
+                'userName' => 'required|unique:users,user_name|min:3',
+                'pass' => 'required|min:6',
+                'passA' => 'required|same:pass',
+                'email' => 'required|email',
+                'phone' => 'required|min:9',
+                'full_name' => 'required'
+            ],
+            [
+                'userName.unique' => 'Tài khoản đã tồn tại'
+            ]
+        );
         $user = new User();
         $user->user_name = $request->userName;
         $user->password = Hash::make($request->pass);
