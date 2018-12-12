@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class authenLogin
 {
@@ -18,6 +19,7 @@ class authenLogin
         if(Auth::guard('web')->check()) {
             return $next($request);
         }
-        return redirect()->route('/');
+        else
+            return redirect()->route('home');
     }
 }

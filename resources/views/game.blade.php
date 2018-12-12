@@ -22,7 +22,11 @@
                     <div class="box-info-user">
                         <div class="info">
                             <img src="images/icon.png">
-                            <p id="name">Trần Anh Quyền</p>
+                                @if(isset($user_login))
+                                <p id="name">{{$user_login->name}}</p>
+                                <a href="logout">Đăng xuất</a>
+                                @endif
+                                
                         </div>
                         <div class="rank-time">
                             <div class="rank">

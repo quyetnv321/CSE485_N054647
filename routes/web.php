@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('home', function () {
     return view('home');
 });
-
+Route::get('logout', 'LoginController@logout');
 Route::get('/register', function () {
     return view('register');
 });
-Route::get('/game', function () {
-    return view('game');
-});
+
+    Route::get('game', 'LoginController@status');
+    Route::post("game", ["as"=>"home","uses"=>"LoginController@index"]);
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/login', function () {
@@ -31,4 +31,4 @@ Route::group(['prefix' => 'admin'], function() {
     });
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
-Route::post("game", ["as"=>"/","uses"=>"LoginController@index"]);
+// Route::post('home', 'LoginController@index')->name('home');
