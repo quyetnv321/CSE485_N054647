@@ -20,6 +20,9 @@ class User extends Authenticatable
         'level',
         'phone',
         'created_at',
+        'id_room',
+        'scores',
+        'answers-pass'
     ];
     
     protected $guarded = [
