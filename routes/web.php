@@ -19,8 +19,8 @@ Route::get('/register', function () {
     return view('register');
 });
 
-    Route::get('game', 'LoginController@status');
-    Route::post("game", ["as"=>"home","uses"=>"LoginController@index"]);
+Route::get('game', 'LoginController@status');
+Route::post("game", ["as"=>"home","uses"=>"LoginController@index"]);
 
 Route::group(['prefix' => 'admin'], function() {
     Route::get('/login', function () {
@@ -31,4 +31,4 @@ Route::group(['prefix' => 'admin'], function() {
     });
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
-// Route::post('home', 'LoginController@index')->name('home');
+Route::post("/game/question", "GameController@getQuestion");

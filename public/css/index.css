@@ -241,11 +241,14 @@ h1{
     }
     .txt-tt{
         color: #fff;
-        width: 40%;
+        width: 100%;
         display: inline-block;
         font-size: 16px;
         padding: 10px;
         height: 100%;
+    }
+    #btn-play{
+        cursor: pointer;
     }
     .txt-tt+div{
         width: 55%;

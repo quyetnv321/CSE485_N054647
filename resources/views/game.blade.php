@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
     <title>Chơi game</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
+    <script src="plugin/jquery-3.3.1.js"></script>
     <script src="js/action.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -42,20 +42,17 @@
                     </div>
                     <div class="thanh-tich">
                         <div class="num-right">
-                            <div class="txt-tt">
-                                <p>Số câu đúng của bạn</p>
-                            </div>
-                            <div>
-                                <p>0</p>
+                            <div class="txt-tt" id="btn-play">
+                                <p>Chơi</p>
                             </div>
                         </div>
                         <div class="top">
                             <div class="txt-tt">
                                 <p>Thành tích cao nhất</p>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <p>0</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="author">
@@ -68,8 +65,8 @@
                     </div>
                     <div id="box-question">
                         <div id= "threads">
-                            <span>01</span>
-                            <span>Hoàn thành câu tục ngữ sau "Một con ngựa đau, cả tàu..."?</span>
+                            <span id="count-question"></span>
+                            <span id="question">Hoàn thành câu tục ngữ sau "Một con ngựa đau, cả tàu..."?</span>
                         </div>
                         <div id="box-answer">
                             <div class="row">
@@ -93,6 +90,8 @@
             </div>
         </div>
     </div>
+    {{ csrf_field() }}
+    <script src="js/game/game.js"></script>
 </body>
 
 </html>

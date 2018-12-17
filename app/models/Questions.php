@@ -21,6 +21,7 @@ class Questions extends Model
         'level',
         'created_at',
         'updated_at',
+        'pass',
     ];
     
     protected $guarded = [
