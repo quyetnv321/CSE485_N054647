@@ -8,7 +8,13 @@ function getData() {
         },
          //dữ liệu nhận về
         success:function(data) {
-            
+            console.log(data)
+            $("#question").html(data.content)
+            $(".answer-a").html(data.answerA)
+            $(".answer-b").html(data.answerB)
+            $(".answer-c").html(data.answerC)
+            $(".answer-d").html(data.answerD)
+            $("#count-question").html(countQuestion)
         }
      });
 }
