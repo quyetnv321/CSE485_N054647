@@ -66,18 +66,18 @@
                     <div id="box-question">
                         <div id= "threads">
                             <span id="count-question"></span>
-                            <span id="question">Hoàn thành câu tục ngữ sau "Một con ngựa đau, cả tàu..."?</span>
+                            <span id="question"></span>
                         </div>
                         <div id="box-answer">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="answer answer-a"><p>Lây bệnh</p></div>
-                                    <div class="answer answer-c"><p>Cười nhạt</p></div>
+                                    <div class="answer answer-a"><p></p></div>
+                                    <div class="answer answer-c"><p></p></div>
 
                                 </div>
                                 <div class="col-6">
-                                    <div class="answer answer-b"><p>Bỏ cỏ</p></div>
-                                    <div class="answer answer-d"><p>Tìm thuốc</p></div>
+                                    <div class="answer answer-b"><p></p></div>
+                                    <div class="answer answer-d"><p></p></div>
                                 </div>
                                 <div class="time-run">
                     
