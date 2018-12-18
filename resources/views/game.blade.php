@@ -48,7 +48,7 @@
                         </div>
                         <div class="top">
                             <div class="txt-tt">
-                                <p>Thành tích cao nhất</p>
+                                <p>Thành tích</p>
                             </div>
                             <!-- <div>
                                 <p>0</p>
