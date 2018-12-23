@@ -32,3 +32,4 @@ Route::group(['prefix' => 'admin'], function() {
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
 Route::post("/game/question", "GameController@getQuestion");
+Route::post("/game/question/UpdatePassQuestion", "GameController@UpdatePassQuestion");

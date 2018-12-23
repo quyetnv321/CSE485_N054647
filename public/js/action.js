@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     $('#btn-join').click(function(){
         $('.wrap-login').css("display","block")
@@ -9,6 +8,4 @@ $(document).ready(function(){
         $(this).css("display","none")
         $('#form-login').css("display","none")
     })
-    
-    
 });

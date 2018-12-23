@@ -12,6 +12,15 @@ class GameController extends Controller
         // echo $request->query;
         $question = new Questions();
         $data = $question::where('pass', 0)->first();
-        return $data;
+        if($data != NULL)
+            return $data;
+        else 
+           return [
+               'OutOfQuestion' => 1
+           ];
+    }
+    public function UpdatePassQuestion(Request $request) {
+        $question = new Questions();
+        $question::where('id', $request->idQuestion)->update(['pass' => 1]);
     }
 }

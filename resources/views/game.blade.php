@@ -43,7 +43,7 @@
                     <div class="thanh-tich">
                         <div class="num-right">
                             <div class="txt-tt" id="btn-play">
-                                <p>Chơi</p>
+                                <p id="play">Chơi</p>
                             </div>
                         </div>
                         <div class="top">
@@ -71,16 +71,16 @@
                         <div id="box-answer">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="answer answer-a"><p></p></div>
-                                    <div class="answer answer-c"><p></p></div>
+                                    <div class="answer answer-a" id='1'><p></p></div>
+                                    <div class="answer answer-c" id='3'><p></p></div>
 
                                 </div>
                                 <div class="col-6">
-                                    <div class="answer answer-b"><p></p></div>
-                                    <div class="answer answer-d"><p></p></div>
+                                    <div class="answer answer-b" id='2'><p></p></div>
+                                    <div class="answer answer-d" id='4'><p></p></div>
                                 </div>
                                 <div class="time-run">
-                    
+                                   <span id="time">00:00</span>
                                 </div>
                             </div>
                         </div>
