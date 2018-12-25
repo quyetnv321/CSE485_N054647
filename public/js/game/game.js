@@ -46,7 +46,7 @@ function getData() {
         success:function(data) {
             // console.log(data)
             if(data.OutOfQuestion) {
-                alert("Hệ thống tạm thời hết câu hỏi, chúng tôi sẽ cập nhật thêm. Cảm ơn!");
+                alert("Hệ thống tạm thời hết câu hỏi. Chúng tôi sẽ cập nhật thêm. Cảm ơn!");
             }
             $("#question").html(data.content)
             $(".answer-a").html(data.answerA)
