@@ -1,8 +1,9 @@
 var countQuestion = 0;
 var rightAnswer;
-var IdRightAnswer;
+var idQuestion;
 var time;
 var choice;
+var timeRun;
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     var Interval = setInterval(function () {
@@ -11,13 +12,14 @@ function startTimer(duration, display) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
         display.text(minutes + ":" + seconds);
+        timeRun = timer
         // end time
         if (--timer < 0) {
             timer = 0;
             // css đáp án đúng
             $('#'+rightAnswer).addClass("quadrat")
             //update pass question
-            updatePassQuestion(IdRightAnswer)
+            updatePassQuestion(idQuestion)
             clearInterval(Interval);    // dừng chạy x
         }
     }, 1000);
@@ -34,6 +36,21 @@ function updatePassQuestion(idQuestion) {
             console.log(result)
         }
     });
+}
+function Scores(score, user) {
+    $.ajax({
+        url: "http://moket-dev.com/game/scores",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+            user : user,
+            score : score
+        },
+         //dữ liệu nhận về
+        success : function(result) {
+            console.log(result)
+        }
+     });
 }
 function getData() {
     $.ajax({
@@ -54,13 +71,13 @@ function getData() {
             $(".answer-c").html(data.answerC)
             $(".answer-d").html(data.answerD)
             $("#count-question").html(countQuestion)
-            rightAnswer = data.right_answer;
-            IdRightAnswer = data.id;
+            rightAnswer = data.right_answer; // đáp án đúng
+            idQuestion = data.id;  // id câu hỏi
             time = data.time;
             // timedown
-            var time = time * 1,
+            var timeDown = time * 1,
             display = $('#time');
-            startTimer(time, display);
+            startTimer(timeDown, display);
             // end timedown
         }
      });
@@ -80,9 +97,19 @@ $(document).ready(function(){
 
         // chọn đáp án
         $(".answer").click(function() {
+            $(".answer").unbind("click");
             choice = $(this).attr('value')
-            // console.log(choice)
-        })
+            console.log(choice)
+            if(choice == rightAnswer){
+                Scores(timeRun, idUser)
+            }
+            else {
+                Scores(time, idUser)
+            }
+            updatePassQuestion(idQuestion)
+            display = $('#time');
+            startTimer(0, display);
+        });
     })
 });
 // đang làm đến: get đc đáp án người chơi chọn

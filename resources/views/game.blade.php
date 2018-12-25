@@ -72,11 +72,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="answer answer-a" id='1' value = '1'><p></p></div>
-                                    <div class="answer answer-c" id='3' value = '2'><p></p></div>
+                                    <div class="answer answer-c" id='3' value = '3'><p></p></div>
 
                                 </div>
                                 <div class="col-6">
-                                    <div class="answer answer-b" id='2' value = '3'><p></p></div>
+                                    <div class="answer answer-b" id='2' value = '2'><p></p></div>
                                     <div class="answer answer-d" id='4' value = '4'><p></p></div>
                                 </div>
                                 <div class="time-run">
@@ -91,6 +91,9 @@
         </div>
     </div>
     {{ csrf_field() }}
+    <script>
+        var idUser = {{$user_login->id}}
+    </script>
     <script src="js/game/game.js"></script>
 </body>
 
