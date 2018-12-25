@@ -334,6 +334,10 @@ h1{
         background: #F98102;
         color: #fff;
     }
+    .selected {
+        background: #F98102;
+        color: #fff;
+    }
     .time-run{
         height: 70px;
         width: 70px;
