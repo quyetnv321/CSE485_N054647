@@ -44,9 +44,9 @@ function getData() {
         },
          //dữ liệu nhận về
         success:function(data) {
-            console.log(data)
+            // console.log(data)
             if(data.OutOfQuestion) {
-                alert("Hệ thống tạm thời hết câu hỏi");
+                alert("Hệ thống tạm thời hết câu hỏi, chúng tôi sẽ cập nhật thêm. Cảm ơn!");
             }
             $("#question").html(data.content)
             $(".answer-a").html(data.answerA)
@@ -62,7 +62,6 @@ function getData() {
             display = $('#time');
             startTimer(time, display);
             // end timedown
-            console.log(rightAnswer)
         }
      });
 }
@@ -78,8 +77,14 @@ $(document).ready(function(){
         });
         getData();
         $('#'+rightAnswer).removeClass("quadrat")
-        
+
+        // chọn đáp án
+        $(".answer").click(function() {
+            choice = $(this).attr('value')
+            // console.log(choice)
+        })
     })
 });
+// đang làm đến: get đc đáp án người chơi chọn
 // tiếp theo: làm 1 biến dem để check số câu hỏi, = 15 thì hết chương trình chơi.
 // 1 biến right chứa câu trl đúng trog db, khi click chọn đ.án thì ktra value click có = right ko? bằng thì + điểm.
