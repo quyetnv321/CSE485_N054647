@@ -130,3 +130,4 @@ $(document).ready(function(){
     })
 });
 // Thành tích chưa cập nhập khi click chơi tiếp
+// loi login tk moi
