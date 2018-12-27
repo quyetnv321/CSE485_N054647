@@ -4,6 +4,10 @@ var idQuestion;
 var time;
 var choice;
 var timeRun;
+var timeDown;
+var checkSelected; // check khi người dùng chọn đáp án
+var countRightAnswer = 0;
+var countScores = 0;
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     var Interval = setInterval(function () {
@@ -14,6 +18,9 @@ function startTimer(duration, display) {
         display.text(minutes + ":" + seconds);
         timeRun = timer
         // end time
+        if(checkSelected == 1) {
+            timer = -1;
+        }
         if (--timer < 0) {
             timer = 0;
             // css đáp án đúng
@@ -75,7 +82,7 @@ function getData() {
             idQuestion = data.id;  // id câu hỏi
             time = data.time;
             // timedown
-            var timeDown = time * 1,
+            timeDown = time * 1,
             display = $('#time');
             startTimer(timeDown, display);
             // end timedown
@@ -84,34 +91,42 @@ function getData() {
 }
 $(document).ready(function(){
     $('#btn-play').click(function(e) {
-        $('#play').html('Câu tiếp theo')
         countQuestion++;
-        e.preventDefault();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        getData();
-        $('#'+rightAnswer).removeClass("quadrat")
-
-        // chọn đáp án
+        if(countQuestion < 15) {    // giới hạn 15 câu/1 lượt chơi
+            checkSelected = 0;
+            $(".answer").removeClass("selected")
+            $('#play').html('Câu tiếp theo')
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            getData();
+            $('#'+rightAnswer).removeClass("quadrat")
+            // chọn đáp án
         $(".answer").click(function() {
             $(".answer").unbind("click");
             choice = $(this).attr('value')
+            $(this).addClass("selected");
             console.log(choice)
             if(choice == rightAnswer){
-                Scores(timeRun, idUser)
+                var timeScore = time - timeRun;
+                Scores(timeScore, idUser)
+                countRightAnswer++;
+                countScores += timeScore;
             }
             else {
                 Scores(time, idUser)
+                countScores += time;
             }
             updatePassQuestion(idQuestion)
-            display = $('#time');
-            startTimer(0, display);
+            checkSelected = 1;
         });
+        }
+        else {
+            alert("Lượt chơi của bạn đã kết thúc."+"\n"+"Số câu trả lời đúng: " + countRightAnswer+"\n" + "Điểm số có được: " + countScores)
+        }
     })
 });
-// đang làm đến: get đc đáp án người chơi chọn
-// tiếp theo: làm 1 biến dem để check số câu hỏi, = 15 thì hết chương trình chơi.
-// 1 biến right chứa câu trl đúng trog db, khi click chọn đ.án thì ktra value click có = right ko? bằng thì + điểm.
+// Thành tích chưa cập nhập khi click chơi tiếp

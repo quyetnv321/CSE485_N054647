@@ -34,7 +34,7 @@
                                 <p>1</p>
                             </div>
                             <div class="time">
-                                <p class="title-rt">Thời gian</p>
+                                <p class="title-rt">Thành tích</p>
                                 <p>{{$user_login->scores}}s</p>
                             </div>
                         </div>
