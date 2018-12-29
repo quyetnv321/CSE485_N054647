@@ -89,19 +89,50 @@ function getData() {
         }
      });
 }
+function getDataUser(id) {
+    $.ajax({
+        url: "http://moket-dev.com/game/user",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+            id : id
+        },
+         //dữ liệu nhận về
+        success:function(data) {
+            $("#scores").html(data[0].scores)
+        }
+     });
+}
+function updateQuestionDay(id) {
+    $.ajax({
+        url: "http://moket-dev.com/game/user-question-day",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+            id : id
+        },
+         //dữ liệu nhận về
+        success:function(data) {
+            console.log(data)
+        }
+     });
+}
 $(document).ready(function(){
+    
     $('#btn-play').click(function(e) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        getDataUser(idUser)
+        updateQuestionDay(idUser)
         countQuestion++;
-        if(countQuestion < 15) {    // giới hạn 15 câu/1 lượt chơi
+        if(countQuestion <= questionsDay) {    // giới hạn số câu / 1 lượt chơi (ngày chơi)
             checkSelected = 0;
             $(".answer").removeClass("selected")
             $('#play').html('Câu tiếp theo')
             e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             getData();
             $('#'+rightAnswer).removeClass("quadrat")
             // chọn đáp án
@@ -125,9 +156,10 @@ $(document).ready(function(){
         });
         }
         else {
-            alert("Lượt chơi của bạn đã kết thúc."+"\n"+"Số câu trả lời đúng: " + countRightAnswer+"\n" + "Điểm số có được: " + countScores)
+            alert("Lượt chơi của bạn hôm nay đã hết."+"\n"+"Số câu trả lời đúng: " + countRightAnswer+"\n" + "Điểm số có được: " + countScores)
         }
     })
 });
-// Thành tích chưa cập nhập khi click chơi tiếp
 // loi login tk moi
+// nếu n ngày ko đăng nhập hoặc chưa chơi hết lượt tự động + full điểm * n  vào t.k, xử lý trog logincontroller
+// trường hợp click câu tiếp theo nhưng k trả lời ko bị + điểm

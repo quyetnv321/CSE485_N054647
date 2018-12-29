@@ -20,6 +20,17 @@ class GameController extends Controller
                'OutOfQuestion' => 1
            ];
     }
+    public function getDataUser(Request $request) {
+        $user = new User();
+        $IdUser = $request->id;
+        $data = $user::select('scores')->where('id',$IdUser)->get()->toArray();
+        if($data != NULL)
+            return $data;
+        else 
+           return [
+               'OutOfDataUser' => 1
+           ];
+    }
     public function UpdatePassQuestion(Request $request) {
         $question = new Questions();
         $question::where('id', $request->idQuestion)->update(['pass' => 1]);
@@ -33,5 +44,13 @@ class GameController extends Controller
         $TotalScores = $score + $ScoreCurrent;
         $user::where('id',$IdUser)->update(['scores' => $TotalScores]);
         // return $score;
+    }
+    public function UpdateQuestionsDay(Request $request) {
+        $user = new User();
+        $IdUser = $request->id;
+        $Get = $user::select('questions_day')->where('id',$IdUser)->get()->toArray();
+        $QuestionsCurrent = $Get[0]['questions_day'];
+        $after = $QuestionsCurrent - 1;
+        $user::where('id',$IdUser)->update(['questions_day' => $after]);
     }
 }
