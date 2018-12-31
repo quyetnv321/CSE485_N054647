@@ -23,10 +23,11 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Hệ thống quản lý game Mở két</p>
 
-                <form action="" method="post">
+                <form action="{{ asset('/admin/check-admin') }}" method="post">
+                    <input type ="hidden" name="_token" value="{{@csrf_token()}}">
                     <div class="form-group">
                         <label for="email">Tên đăng nhập</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Nhập tài khoản">
+                        <input type="text" class="form-control" name="userName" id="email" placeholder="Nhập tài khoản">
                     </div>
                     <div class="form-group">
                         <label for="password">Mật khẩu</label>

@@ -12,7 +12,13 @@ class GameController extends Controller
     public function getQuestion(Request $request) {
         // echo $request->query;
         $question = new Questions();
-        $data = $question::where('pass', 0)->first();
+        $room = $request->room;
+        if($room == 10) {
+            $level = 2;
+        }
+        else 
+            $level = 1;
+        $data = $question::where([['pass', 0],['level',$level]])->first();
         if($data != NULL)
             return $data;
         else 

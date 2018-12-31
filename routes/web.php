@@ -8,12 +8,12 @@ Route::get('/register', function () {
     return view('register');
 });
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('/login', function () {
-        return view('admin.login');
-    });
-    Route::get('/manage', function () {
-        return view('admin.manage');
-    });
+    Route::get('/', 'LoginAdminController@GetLogin');
+    Route::get('/login', 'LoginAdminController@GetLogin')->name('admin.login');;
+    Route::get('/manage', 'LoginAdminController@manage')->name('admin.manage');
+    Route::post('/check-admin', 'LoginAdminController@CheckAdminLogin')->name('login.admin');
+    Route::get('/logOut', 'LoginAdminController@logout')->name('logout.admin');
+
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
 Route::post("/game/question", "GameController@getQuestion");

@@ -21,10 +21,8 @@
         <div class = "row box-content">
             <div class = "col-md-5 wrap">
                 <h3>Tài khoản</h3>
-               
-                <form action = "" method = "post">
-                    
-                </form>
+                <a href="{{ route('logout.admin') }}">Đăng xuất</a>
+                
             </div>
             <div class = "col-md-7 wrap">
                 <div class="wrap-form">

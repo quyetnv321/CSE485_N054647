@@ -36,9 +36,9 @@
                                 <p>1</p>
                             </div>
                             <div class="time">
-                                <p class="title-rt">Thành tích</p>
+                                <p class="title-rt">Thành tích (s)</p>
                                 @if(isset(Auth::user()->user_name))
-                                    <p id = "scores">{{Auth::user()->scores}}s</p>
+                                    <p id = "scores">{{Auth::user()->scores}}</p>
                                 @endif
                             </div>
                         </div>
@@ -99,6 +99,7 @@
         <script>
             var idUser = {{Auth::user()->id}}
             var questionsDay = {{Auth::user()->questions_day}}
+            var room = {{Auth::user()->id_room}}
         </script>
     @endif
     <script src="js/game/game.js"></script>

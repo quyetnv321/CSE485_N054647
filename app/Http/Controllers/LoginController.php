@@ -39,7 +39,7 @@ class LoginController extends Controller
             return redirect()->route('game');
         }
         else
-            echo "sai ten dang nhap";
+            return Redirect::back()->withErrors(['msg', 'Sai tên tài khoản hoặc mật khẩu']);
     }
     public function game() {
         return view('game');

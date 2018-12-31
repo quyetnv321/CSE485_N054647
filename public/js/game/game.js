@@ -4,18 +4,8 @@ var idQuestion;
 var time;
 var choice;
 var timeRun;
-<<<<<<< HEAD
 var timeDown;   // t.gian của câu hỏi
 var checkSelected = 1; // check khi người dùng chọn đáp án
-=======
-<<<<<<< HEAD
-var timeDown;   // t.gian của câu hỏi
-var checkSelected = 1; // check khi người dùng chọn đáp án
-=======
-var timeDown;
-var checkSelected; // check khi người dùng chọn đáp án
->>>>>>> 70f73d15376e801edfc1d6118ef8e1e37fc701c1
->>>>>>> 50ed208e778be40670ea89db6e0f8546efa70441
 var countRightAnswer = 0;
 var countScores = 0;
 function startTimer(duration, display) {
@@ -73,12 +63,13 @@ function Scores(score, user) {
         }
      });
 }
-function getData() {
+function getData(room) {
     $.ajax({
         url: "http://moket-dev.com/game/question",
         method: "POST",
         dataType: "JSON",
         data: {
+            room : room
         },
          //dữ liệu nhận về
         success:function(data) {
@@ -86,20 +77,24 @@ function getData() {
             if(data.OutOfQuestion) {
                 alert("Hệ thống tạm thời hết câu hỏi. Chúng tôi sẽ cập nhật thêm. Cảm ơn!");
             }
-            $("#question").html(data.content)
-            $(".answer-a").html(data.answerA)
-            $(".answer-b").html(data.answerB)
-            $(".answer-c").html(data.answerC)
-            $(".answer-d").html(data.answerD)
-            $("#count-question").html(countQuestion)
-            rightAnswer = data.right_answer; // đáp án đúng
-            idQuestion = data.id;  // id câu hỏi
-            time = data.time;
-            // timedown
-            timeDown = time * 1,
-            display = $('#time');
-            startTimer(timeDown, display);
-            // end timedown
+            else {
+                $("#question").html(data.content)
+                $(".answer-a").html(data.answerA)
+                $(".answer-b").html(data.answerB)
+                $(".answer-c").html(data.answerC)
+                $(".answer-d").html(data.answerD)
+                $("#count-question").html(countQuestion)
+                rightAnswer = data.right_answer; // đáp án đúng
+                idQuestion = data.id;  // id câu hỏi
+                time = data.time;
+                // timedown
+                timeDown = time * 1,
+                display = $('#time');
+                startTimer(timeDown, display);
+                getDataUser(idUser)
+                updateQuestionDay(idUser)
+                // end timedown
+            }
         }
      });
 }
@@ -138,9 +133,6 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
         if(countQuestion <= questionsDay) {    // giới hạn số câu / 1 lượt chơi (ngày chơi)
             $(".answer").removeClass("selected")
             $('#play').html('Câu tiếp theo')
@@ -148,9 +140,7 @@ $(document).ready(function(){
             if(checkSelected == 1) {    // phải trả lời mới đc next câu tiếp theo
                 checkSelected = 0;
                 countQuestion++;
-                getDataUser(idUser)
-                updateQuestionDay(idUser)
-                getData();
+                getData(room);
             }
             $('#'+rightAnswer).removeClass("quadrat")
             // chọn đáp án
@@ -178,52 +168,3 @@ $(document).ready(function(){
     });
 });
 // loi login tk moi
-=======
-        getDataUser(idUser)
-        updateQuestionDay(idUser)
-        countQuestion++;
->>>>>>> 50ed208e778be40670ea89db6e0f8546efa70441
-        if(countQuestion <= questionsDay) {    // giới hạn số câu / 1 lượt chơi (ngày chơi)
-            $(".answer").removeClass("selected")
-            $('#play').html('Câu tiếp theo')
-            e.preventDefault();
-            if(checkSelected == 1) {    // phải trả lời mới đc next câu tiếp theo
-                checkSelected = 0;
-                countQuestion++;
-                getDataUser(idUser)
-                updateQuestionDay(idUser)
-                getData();
-            }
-            $('#'+rightAnswer).removeClass("quadrat")
-            // chọn đáp án
-        }
-        else {
-            alert("Lượt chơi của bạn hôm nay đã hết."+"\n"+"Số câu trả lời đúng: " + countRightAnswer+"\n" + "Điểm số có được: " + countScores)
-        }
-    })
-    $(".answer").click(function() {
-        // $(".answer").unbind("click");
-        choice = $(this).attr('value')
-        $(this).addClass("selected");
-        if(choice == rightAnswer){
-            var timeScore = time - timeRun;
-            Scores(timeScore, idUser)
-            countRightAnswer++;
-            countScores += timeScore;
-        }
-        else {
-            Scores(time, idUser)
-            countScores += time;
-        }
-        updatePassQuestion(idQuestion)
-        checkSelected = 1;
-    });
-});
-<<<<<<< HEAD
-// loi login tk moi
-=======
-// loi login tk moi
-// nếu n ngày ko đăng nhập hoặc chưa chơi hết lượt tự động + full điểm * n  vào t.k, xử lý trog logincontroller
-// trường hợp click câu tiếp theo nhưng k trả lời ko bị + điểm
->>>>>>> 70f73d15376e801edfc1d6118ef8e1e37fc701c1
->>>>>>> 50ed208e778be40670ea89db6e0f8546efa70441
