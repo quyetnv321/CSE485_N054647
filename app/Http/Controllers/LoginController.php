@@ -53,4 +53,3 @@ class LoginController extends Controller
     }
 }
 ?>
-<!-- đang bị lỗi số giờ nhỏ quá đell chia đc cho 8600s ( toàn = 0) -->

@@ -4,8 +4,8 @@ var idQuestion;
 var time;
 var choice;
 var timeRun;
-var timeDown;
-var checkSelected; // check khi người dùng chọn đáp án
+var timeDown;   // t.gian của câu hỏi
+var checkSelected = 1; // check khi người dùng chọn đáp án
 var countRightAnswer = 0;
 var countScores = 0;
 function startTimer(duration, display) {
@@ -27,6 +27,10 @@ function startTimer(duration, display) {
             $('#'+rightAnswer).addClass("quadrat")
             //update pass question
             updatePassQuestion(idQuestion)
+            if(checkSelected == 0) {    
+                Scores(timeDown, idUser)    // hết t.g ko trl + 15đ
+                checkSelected = 1;
+            }
             clearInterval(Interval);    // dừng chạy x
         }
     }, 1000);
@@ -118,48 +122,46 @@ function updateQuestionDay(id) {
      });
 }
 $(document).ready(function(){
-    
     $('#btn-play').click(function(e) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        getDataUser(idUser)
-        updateQuestionDay(idUser)
-        countQuestion++;
         if(countQuestion <= questionsDay) {    // giới hạn số câu / 1 lượt chơi (ngày chơi)
-            checkSelected = 0;
             $(".answer").removeClass("selected")
             $('#play').html('Câu tiếp theo')
             e.preventDefault();
-            getData();
+            if(checkSelected == 1) {    // phải trả lời mới đc next câu tiếp theo
+                checkSelected = 0;
+                countQuestion++;
+                getDataUser(idUser)
+                updateQuestionDay(idUser)
+                getData();
+            }
             $('#'+rightAnswer).removeClass("quadrat")
             // chọn đáp án
-        $(".answer").click(function() {
-            $(".answer").unbind("click");
-            choice = $(this).attr('value')
-            $(this).addClass("selected");
-            console.log(choice)
-            if(choice == rightAnswer){
-                var timeScore = time - timeRun;
-                Scores(timeScore, idUser)
-                countRightAnswer++;
-                countScores += timeScore;
-            }
-            else {
-                Scores(time, idUser)
-                countScores += time;
-            }
-            updatePassQuestion(idQuestion)
-            checkSelected = 1;
-        });
         }
         else {
             alert("Lượt chơi của bạn hôm nay đã hết."+"\n"+"Số câu trả lời đúng: " + countRightAnswer+"\n" + "Điểm số có được: " + countScores)
         }
     })
+    $(".answer").click(function() {
+        // $(".answer").unbind("click");
+        choice = $(this).attr('value')
+        $(this).addClass("selected");
+        if(choice == rightAnswer){
+            var timeScore = time - timeRun;
+            Scores(timeScore, idUser)
+            countRightAnswer++;
+            countScores += timeScore;
+        }
+        else {
+            Scores(time, idUser)
+            countScores += time;
+        }
+        updatePassQuestion(idQuestion)
+        checkSelected = 1;
+    });
 });
 // loi login tk moi
-// nếu n ngày ko đăng nhập hoặc chưa chơi hết lượt tự động + full điểm * n  vào t.k, xử lý trog logincontroller
-// trường hợp click câu tiếp theo nhưng k trả lời ko bị + điểm
