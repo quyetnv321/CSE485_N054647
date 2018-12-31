@@ -12,11 +12,14 @@
     <script src="js/action.js"></script>
 </head>
 <body>
+        @if(isset(Auth::user()->user_name))
+            <script>window.location = "/game";</script>
+        @endif
         <div id="form-login">
             <div class="title-form">
                 <p>tham gia chơi</p>
             </div>
-            <form action="{{route('home')}}" method="post">
+            <form method="post" action="{{ asset('/home/login') }}">
                 <input type ="hidden" name="_token" value="{{@csrf_token()}}">
                 <p><input class="input-login" type="text" name="userName" placeholder="Tên tài khoản"></p>
                 <p><input class="input-login" type="password" name="password" placeholder="Mật khẩu"></p>

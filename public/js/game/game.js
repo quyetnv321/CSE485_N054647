@@ -4,8 +4,13 @@ var idQuestion;
 var time;
 var choice;
 var timeRun;
+<<<<<<< HEAD
 var timeDown;   // t.gian của câu hỏi
 var checkSelected = 1; // check khi người dùng chọn đáp án
+=======
+var timeDown;
+var checkSelected; // check khi người dùng chọn đáp án
+>>>>>>> 70f73d15376e801edfc1d6118ef8e1e37fc701c1
 var countRightAnswer = 0;
 var countScores = 0;
 function startTimer(duration, display) {
@@ -122,12 +127,14 @@ function updateQuestionDay(id) {
      });
 }
 $(document).ready(function(){
+    
     $('#btn-play').click(function(e) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+<<<<<<< HEAD
         if(countQuestion <= questionsDay) {    // giới hạn số câu / 1 lượt chơi (ngày chơi)
             $(".answer").removeClass("selected")
             $('#play').html('Câu tiếp theo')
@@ -165,3 +172,43 @@ $(document).ready(function(){
     });
 });
 // loi login tk moi
+=======
+        getDataUser(idUser)
+        updateQuestionDay(idUser)
+        countQuestion++;
+        if(countQuestion <= questionsDay) {    // giới hạn số câu / 1 lượt chơi (ngày chơi)
+            checkSelected = 0;
+            $(".answer").removeClass("selected")
+            $('#play').html('Câu tiếp theo')
+            e.preventDefault();
+            getData();
+            $('#'+rightAnswer).removeClass("quadrat")
+            // chọn đáp án
+        $(".answer").click(function() {
+            $(".answer").unbind("click");
+            choice = $(this).attr('value')
+            $(this).addClass("selected");
+            console.log(choice)
+            if(choice == rightAnswer){
+                var timeScore = time - timeRun;
+                Scores(timeScore, idUser)
+                countRightAnswer++;
+                countScores += timeScore;
+            }
+            else {
+                Scores(time, idUser)
+                countScores += time;
+            }
+            updatePassQuestion(idQuestion)
+            checkSelected = 1;
+        });
+        }
+        else {
+            alert("Lượt chơi của bạn hôm nay đã hết."+"\n"+"Số câu trả lời đúng: " + countRightAnswer+"\n" + "Điểm số có được: " + countScores)
+        }
+    })
+});
+// loi login tk moi
+// nếu n ngày ko đăng nhập hoặc chưa chơi hết lượt tự động + full điểm * n  vào t.k, xử lý trog logincontroller
+// trường hợp click câu tiếp theo nhưng k trả lời ko bị + điểm
+>>>>>>> 70f73d15376e801edfc1d6118ef8e1e37fc701c1

@@ -22,9 +22,11 @@
                     <div class="box-info-user">
                         <div class="info">
                             <img src="images/icon.png">
-                                @if(isset($user_login))
-                                <p id="name">{{$user_login->name}}</p>
-                                <a href="logout">Đăng xuất</a>
+                                @if(isset(Auth::user()->user_name))
+                                    <p id="name">{{Auth::user()->name}}</p>
+                                    <a href="{{ url('/home/logout') }}">Đăng xuất</a>
+                                @else
+                                    <script>window.location = "/home";</script>
                                 @endif
                                 
                         </div>
@@ -35,7 +37,9 @@
                             </div>
                             <div class="time">
                                 <p class="title-rt">Thành tích</p>
-                                <p>{{$user_login->scores}}s</p>
+                                @if(isset(Auth::user()->user_name))
+                                    <p id = "scores">{{Auth::user()->scores}}s</p>
+                                @endif
                             </div>
                         </div>
 
@@ -91,9 +95,12 @@
         </div>
     </div>
     {{ csrf_field() }}
-    <script>
-        var idUser = {{$user_login->id}}
-    </script>
+    @if(isset(Auth::user()->user_name))
+        <script>
+            var idUser = {{Auth::user()->id}}
+            var questionsDay = {{Auth::user()->questions_day}}
+        </script>
+    @endif
     <script src="js/game/game.js"></script>
 </body>
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeQuestionsRightAnswerColumnType extends Migration
+class AddQuestionsDayTableQuestions extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class ChangeQuestionsRightAnswerColumnType extends Migration
     public function up()
     {
         //
-        Schema::table('questions', function ($table) {
-            $table->tinyInteger('right_answer')->change();
+        Schema::table('users', function($table) {
+            $table->integer('questions_day');
         });
     }
 
@@ -27,5 +27,8 @@ class ChangeQuestionsRightAnswerColumnType extends Migration
     public function down()
     {
         //
+        Schema::table('users', function($table) {
+            $table->dropColumn('questions_day');
+        });
     }
 }
