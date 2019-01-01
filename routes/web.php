@@ -13,6 +13,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/manage', 'LoginAdminController@manage')->name('admin.manage');
     Route::post('/check-admin', 'LoginAdminController@CheckAdminLogin')->name('login.admin');
     Route::get('/logOut', 'LoginAdminController@logout')->name('logout.admin');
+    Route::post('/up-question', 'AdminController@UploadQuestion')->name('upQuestion.admin');
 
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);

@@ -8,16 +8,6 @@ session_start();
 class LoginAdminController extends Controller
 {
     public function CheckAdminLogin(Request $request) {
-        // $user = new User();
-        // $user_data = array(
-        //     'user_name' => $request->userName,
-        //     'password' => $request->password
-        // );
-        // if(Auth::attempt($user_data)) {
-        //     return redirect()->route('game');
-        // }
-        // else
-        //     echo "sai ten dang nhap";
         $admin = new Admin();
         $user_name = $request->userName;
         $password = $request->password;

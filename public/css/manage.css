@@ -601,3 +601,6 @@ textarea {
   border-radius:10px;
   border:6px solid #556677;
 }
+#up-success{
+    color: green;
+}
