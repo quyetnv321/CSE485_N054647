@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\models\Questions;
+use App\models\User;
 use Hash;
 class AdminController extends Controller
 {
@@ -19,6 +20,12 @@ class AdminController extends Controller
         $question->pass = 0;
         $question->save();
         return redirect()->back()->withErrors("Tải câu hỏi lên thành công");
+   }
+   public function GetChartRoom(Request $request) {
+      $user = new User();
+      $room = $request->room;
+      $list = $user::orderBy('scores', 'DESC')->where('id_room', $room)->get()->toArray();
+      return $list;
    }
 }
 ?>

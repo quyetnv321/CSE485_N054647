@@ -32,6 +32,7 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->level = 0;
+        $user->questions_day = 15;
         $user->id_room = rand(1,10);
         if(!$user->where('user_name',$request->userName)->first()){
             $user->save();

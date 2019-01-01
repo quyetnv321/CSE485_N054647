@@ -1,4 +1,5 @@
 <?php
+Route::get('/', 'LoginController@home');
 Route::get('home', 'LoginController@home');
 Route::get('game', 'LoginController@game')->name('game');
 Route::post('home/login', 'LoginController@checkLogin');
@@ -13,8 +14,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/manage', 'LoginAdminController@manage')->name('admin.manage');
     Route::post('/check-admin', 'LoginAdminController@CheckAdminLogin')->name('login.admin');
     Route::get('/logOut', 'LoginAdminController@logout')->name('logout.admin');
+    Route::get('/chart', 'LoginAdminController@Chart')->name('chart.admin');
     Route::post('/up-question', 'AdminController@UploadQuestion')->name('upQuestion.admin');
-
+    Route::post('/get-chart', 'AdminController@GetChartRoom');
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
 Route::post("/game/question", "GameController@getQuestion");

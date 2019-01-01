@@ -168,3 +168,4 @@ $(document).ready(function(){
     });
 });
 // loi login tk moi
+// lỗi cập nhật điểm khi mùng 1 - 30

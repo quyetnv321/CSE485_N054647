@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\models\Admin;
+use App\models\rooms;
 use Hash;
 session_start();
 class LoginAdminController extends Controller
@@ -19,8 +20,7 @@ class LoginAdminController extends Controller
             return redirect()->back()->withErrors(['msg', 'Sai tên tài khoản hoặc mật khẩu']);
     }
     public function manage() {
-        if(!isset($_SESSION['login']))
-            return redirect()->route('admin.login');
+        
         return view('admin.manage');
     }
     public function GetLogin() {
@@ -31,6 +31,13 @@ class LoginAdminController extends Controller
     public function logout() {
         unset($_SESSION['login']);
         return redirect()->route('admin.login');
+    }
+    public function Chart() {
+        if(!isset($_SESSION['login']))
+            return redirect()->route('admin.login');
+        $rooms = new rooms();
+        $list = $rooms::all();
+        return view('admin.chart', compact('list'));
     }
 }
 ?>
