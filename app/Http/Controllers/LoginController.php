@@ -17,8 +17,8 @@ class LoginController extends Controller
             // update lượt chơi, điểm ngày mới
             $time_login = strtotime(Auth::user()->updated_at);
             $timeMidnight = strtotime('today midnight');
-            $timeNow = time();
-            $aDay = 86400;  // 1 ngày = 86400s
+            // $timeNow = time();
+            // $aDay = 86400;  // 1 ngày = 86400s
 
             if($time_login < $timeMidnight) {   // lần đầu đăng nhập trong ngày
                 $IdUser = Auth::user()->id;

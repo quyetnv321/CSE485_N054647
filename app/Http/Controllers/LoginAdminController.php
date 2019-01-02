@@ -39,5 +39,10 @@ class LoginAdminController extends Controller
         $list = $rooms::all();
         return view('admin.chart', compact('list'));
     }
+    public function Summary() {
+        if(!isset($_SESSION['login']))
+            return redirect()->route('admin.login');
+        return view('admin.summary', compact('list'));
+    }
 }
 ?>

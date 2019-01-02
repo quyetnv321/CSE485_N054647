@@ -23,8 +23,9 @@
         <div class = "row box-content">
             <div class = "col-md-5 wrap">
                 <h3>Tài khoản: <?= $_SESSION['login'] ?></h3>
-                <a href="{{ route('chart.admin') }}">Bảng xếp hạng các phòng</a><br>
                 <a href="{{ route('admin.manage') }}">Up câu hỏi</a><br>
+                <a href="{{ route('chart.admin') }}">Bảng xếp hạng các phòng</a><br>
+                <a href="{{ route('summary.admin') }}">Tổng kết kết quả thi</a><br>
                 <a href="{{ route('logout.admin') }}">Đăng xuất</a>
             </div>
             <div class = "col-md-7 wrap">

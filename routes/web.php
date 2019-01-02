@@ -17,6 +17,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/chart', 'LoginAdminController@Chart')->name('chart.admin');
     Route::post('/up-question', 'AdminController@UploadQuestion')->name('upQuestion.admin');
     Route::post('/get-chart', 'AdminController@GetChartRoom');
+    Route::get('/summary', 'LoginAdminController@Summary')->name('summary.admin');
+    Route::post('/get-summary', 'AdminController@Sum');
+
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
 Route::post("/game/question", "GameController@getQuestion");

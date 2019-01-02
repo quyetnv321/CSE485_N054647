@@ -32,8 +32,8 @@
                         </div>
                         <div class="rank-time">
                             <div class="rank">
-                                <p class="title-rt">Xếp hạng</p>
-                                <p>1</p>
+                                <p class="title-rt">Phòng</p>
+                                <p>Random {{Auth::user()->id_room}}</p>
                             </div>
                             <div class="time">
                                 <p class="title-rt">Thành tích (s)</p>
