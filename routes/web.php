@@ -19,6 +19,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('/get-chart', 'AdminController@GetChartRoom');
     Route::get('/summary', 'LoginAdminController@Summary')->name('summary.admin');
     Route::post('/get-summary', 'AdminController@Sum');
+    Route::get('/reward', 'LoginAdminController@Reward')->name('reward.admin');
+    Route::post('/reward-random', 'AdminController@upRewardRandom');
+    Route::post('/reward-vip', 'AdminController@upRewardVip');
 
 });
 Route::post("register", ["as"=>"register","uses"=>"RegisterController@index"]);
@@ -27,5 +30,7 @@ Route::post("/game/question/UpdatePassQuestion", "GameController@UpdatePassQuest
 Route::post("/game/scores", "GameController@Scores");
 Route::post("/game/user", "GameController@getDataUser");
 Route::post("/game/user-question-day", "GameController@UpdateQuestionsDay");
+Route::post("/game/chart-room-user", "GameController@GetChartRoomUser");
+
 
 

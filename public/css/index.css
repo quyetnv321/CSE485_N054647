@@ -51,6 +51,66 @@ h1{
     justify-content: center;
     position: relative;
 }
+.txt-tt{
+    cursor: pointer;
+}
+.txt-tt>p{
+    text-align: center;
+    font-size: 30px;
+    padding: 5px;
+    font-weight: bold;
+}
+.wrap-game{
+    position: relative;
+}
+.box-achievements{
+    position: absolute;
+    z-index: 2;
+    background: #fff;
+    left: 31%;
+    top: 100px;
+    padding: 20px;
+    display: none;
+    -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes zoomIn {
+    0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+    }
+    50% {
+    opacity: 1;
+    }
+    }
+    @keyframes zoomIn {
+    0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+    }
+    50% {
+    opacity: 1;
+    }
+    } 
+#achievements>table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+#achievements>table td, th {
+    border: 1px solid #dddddd;
+    padding: 10px 30px;
+    text-align: center;
+  }
+  #achievements>table tr:nth-child(even) {
+    background-color: #dddddd;
+  }
 .logo-home{
     color: #9C9DA2;
     font-size: 100px;
@@ -262,7 +322,7 @@ h1{
         width: 100%;
         margin-top: 15px;
         height: 155px;
-        background: url('../images/phquyen.PNG');
+        background: #fff;
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -343,8 +403,11 @@ h1{
         width: 70px;
         position: absolute;
         left: 46%;
-        border: 1px solid;
         top: 31%;
+    }
+    #time{
+        font-size: 24px;
+        color: #fff;
     }
     #mc{
         background: url('../images/mc.JPG');

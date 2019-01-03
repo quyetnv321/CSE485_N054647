@@ -35,7 +35,7 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
-function updatePassQuestion(idQuestion) {
+function updatePassQuestion(idQuestion) {   
     $.ajax({
         url : "http://moket-dev.com/game/question/UpdatePassQuestion",
         method : "POST",
@@ -126,6 +126,26 @@ function updateQuestionDay(id) {
         }
      });
 }
+function GetChartRoom(room) {
+    $.ajax({
+        url: "http://moket-dev.com/game/chart-room-user",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+            room : room
+        },
+         //dữ liệu nhận về
+        success:function(result) {
+            var table = '<table class="table table-striped"><thead><tr><th scope="col">Hạng</th><th scope="col">Tài khoản</th><th scope="col">Tên</th><th scope="col">Điểm số</th></tr></thead><tbody>'
+            $.each(result, function(key, value) {
+                table += '<tr><th scope="row">'+(key + 1)+'</th><td>'+value.user_name+'</th><td>'+value.name+'</th><td>'+value.scores+'</td></tr>';
+            });
+            table += '</tbody></table>'
+            $("#achievements").html(table)
+            $(".box-achievements").css("display","block")
+        }
+     });
+}
 $(document).ready(function(){
     $('#btn-play').click(function(e) {
         $.ajaxSetup({
@@ -166,6 +186,19 @@ $(document).ready(function(){
         updatePassQuestion(idQuestion)
         checkSelected = 1;
     });
+    $("#tt").click(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        GetChartRoom(room)
+        $(".wrap-login").css("display","block")
+    })
+    $(".wrap-login").click(function() {
+        $(".box-achievements").css("display","none")
+
+    })
 });
 // loi login tk moi
 // lỗi cập nhật điểm khi mùng 1 - 30

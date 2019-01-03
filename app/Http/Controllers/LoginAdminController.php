@@ -20,7 +20,8 @@ class LoginAdminController extends Controller
             return redirect()->back()->withErrors(['msg', 'Sai tên tài khoản hoặc mật khẩu']);
     }
     public function manage() {
-        
+        if(!isset($_SESSION['login']))
+            return redirect()->route('admin.login');
         return view('admin.manage');
     }
     public function GetLogin() {
@@ -43,6 +44,11 @@ class LoginAdminController extends Controller
         if(!isset($_SESSION['login']))
             return redirect()->route('admin.login');
         return view('admin.summary', compact('list'));
+    }
+    public function Reward() {
+        if(!isset($_SESSION['login']))
+            return redirect()->route('admin.login');
+        return view('admin.reward');
     }
 }
 ?>

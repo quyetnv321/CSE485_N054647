@@ -5,6 +5,9 @@
     <div class="form-group btn-submit">
         <button style type="button" class="btn btn-primary" id="btn-sum" name = "btn-sum">Tổng kết</button>
     </div>
+    <h4 id="title-list"></h4>
+    <br>
+    <div id="data-sum"></div>
 @endsection
 @section('scripts')
     <script src="../js/admin/sum.js"></script>

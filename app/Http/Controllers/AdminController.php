@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\models\Questions;
 use App\models\User;
+use App\models\Reward;
 use Hash;
 class AdminController extends Controller
 {
@@ -76,6 +77,28 @@ class AdminController extends Controller
       }
 
       return $listUsersWin;
+   }
+   public function upRewardRandom(Request $request) {
+      $reward = new Reward();
+      $nameRewardRandom = $request->nameRewardRandom;
+      $donorRewardRandom = $request->donorRewardRandom;
+      $priceRewardRandom = $request->priceRewardRandom;
+      $reward->name = $nameRewardRandom;
+      $reward->donor = $donorRewardRandom;
+      $reward->price = $priceRewardRandom;
+      $reward->level = 1;
+      $reward->save();
+   }
+   public function upRewardVip(Request $request) {
+      $reward = new Reward();
+      $nameRewardVip = $request->nameRewardVip;
+      $donorRewardVip = $request->donorRewardVip;
+      $priceRewardVip = $request->priceRewardVip;
+      $reward->name = $nameRewardVip;
+      $reward->donor = $donorRewardVip;
+      $reward->price = $priceRewardVip;
+      $reward->level = 2;
+      $reward->save();
    }
 }
 ?>

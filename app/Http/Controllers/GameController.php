@@ -59,4 +59,10 @@ class GameController extends Controller
         $after = $QuestionsCurrent - 1;
         $user::where('id',$IdUser)->update(['questions_day' => $after]);
     }
+    public function GetChartRoomUser(Request $request) {
+        $user = new User();
+        $room = $request->room;
+        $list = $user::orderBy('scores', 'ASC')->where('id_room', $room)->get()->toArray();
+        return $list;
+    }
 }

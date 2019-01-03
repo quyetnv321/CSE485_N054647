@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="top">
-                            <div class="txt-tt">
+                            <div class="txt-tt" id="tt">
                                 <p>Thành tích</p>
                             </div>
                             <!-- <div>
@@ -93,6 +93,11 @@
                 
             </div>
         </div>
+        <div class="box-achievements">
+            <div id = "achievements"></div>
+        </div>
+        <div class="wrap-login">
+        </div>
     </div>
     {{ csrf_field() }}
     @if(isset(Auth::user()->user_name))
@@ -100,6 +105,7 @@
             var idUser = {{Auth::user()->id}}
             var questionsDay = {{Auth::user()->questions_day}}
             var room = {{Auth::user()->id_room}}
+
         </script>
     @endif
     <script src="js/game/game.js"></script>
