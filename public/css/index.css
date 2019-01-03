@@ -409,6 +409,9 @@ h1{
         font-size: 24px;
         color: #fff;
     }
+    #note{
+        
+    }
     #mc{
         background: url('../images/mc.JPG');
         background-size: cover;

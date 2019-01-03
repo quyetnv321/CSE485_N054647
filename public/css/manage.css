@@ -321,7 +321,7 @@ span.psw {
     padding: 10px 10px;
   }
   .box-content{
-      height: calc(100vh - 70px);
+      min-height: calc(100vh - 70px);
   }
   /* css menu */
   .navbar-inverse{

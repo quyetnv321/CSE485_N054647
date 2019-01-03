@@ -75,7 +75,10 @@ class AdminController extends Controller
          }
          array_push($listUsersWin, $items[0]);
       }
-
+      // chuyển những người chơi thắng cuộc vào phòng Ngoại Hạng
+      foreach($listUsersWin as $items) {
+         $user::where('id',$items['id'])->update(['id_room' => 10]); 
+      }
       return $listUsersWin;
    }
    public function upRewardRandom(Request $request) {

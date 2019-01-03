@@ -12,7 +12,6 @@ $(document).ready(function() {
             data: {
             },
             success : function(result) {
-                console.log(result)
                 $("#title-list").html("Danh sách những người nhận giải");
                 var table = '<table class="table table-striped"><thead><tr><th scope="col">Phòng</th><th scope="col">Tài khoản</th><th scope="col">Tên</th><th scope="col">Điểm số</th><th scope="col">Email</th><th scope="col">SĐT</th></tr></thead><tbody>'
                 $.each(result, function(key, value) {
@@ -20,6 +19,7 @@ $(document).ready(function() {
                 });
                 table += '</tbody></table>'
                 $("#data-sum").html(table)
+                $("#note").text("Điểm số của tất cả tài khoản đã được reset, những người chơi dưới đây sẽ được chuyển vào phòng Ngoại Hạng")
             }
          });
     })
