@@ -39,7 +39,7 @@ class LoginController extends Controller
             return redirect()->route('game');
         }
         else
-            return Redirect::back()->withErrors(['msg', 'Sai tên tài khoản hoặc mật khẩu']);
+            return redirect()->back()->withErrors(['msg', 'Sai tên tài khoản hoặc mật khẩu']);
     }
     public function game() {
         return view('game');

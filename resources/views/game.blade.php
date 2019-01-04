@@ -94,6 +94,7 @@
             </div>
         </div>
         <div class="box-achievements">
+            <h3 id="title-achievements">Bảng xếp hạng phòng của bạn</h3>
             <div id = "achievements"></div>
         </div>
         <div class="wrap-login">

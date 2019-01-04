@@ -410,7 +410,10 @@ h1{
         color: #fff;
     }
     #note{
-        
+
+    }
+    #title-achievements{
+        text-align: center;
     }
     #mc{
         background: url('../images/mc.JPG');
